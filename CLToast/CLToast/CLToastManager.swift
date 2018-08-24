@@ -29,6 +29,8 @@ public class CLToastManager: NSObject {
         self.textColor = UIColor.white
         self.textFont = UIFont.systemFont(ofSize: 16)
         self.cornerRadius = 5
+        self.successImage = UIImage(named: "ic_toast_success", in: BundleUtil.getCurrentBundle(), compatibleWith: nil)
+        self.failImage = UIImage(named: "icon_sign", in: BundleUtil.getCurrentBundle(), compatibleWith: nil)
     }
     
     func add(_ toast: CLToastUtils) {

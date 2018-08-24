@@ -43,6 +43,7 @@ class CLTextToast: UIView {
     
     func initEventHendle() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(aNotification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(aNotification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         ScreenTools.share.screenClouse = { [weak self] (orientation) in
             self?.setNeedsLayout()
@@ -60,6 +61,10 @@ class CLTextToast: UIView {
         let keyboardRect = aValue?.cgRectValue
         let height = keyboardRect?.size.height
         self.keyBoardHeight = height ?? 0
+        self.setNeedsLayout()
+    }
+    @objc func keyboardWillHide(aNotification: Notification) {
+        self.keyBoardHeight = 0
         self.setNeedsLayout()
     }
     

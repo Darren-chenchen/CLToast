@@ -41,7 +41,8 @@ class ViewController: UIViewController {
                     "测试展示在指定的view上",
                     "测试更换成功图片",
                     "修改toast的属性",
-                    "重置toast的属性"
+                    "重置toast的属性",
+                    "测试禁止多任务顺序执行，连续点击，只toast一次"
                     ]
     
     override func viewDidLoad() {
@@ -126,8 +127,12 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
             CLToast.cl_show(msg: "修改toast的属性,修改toast的属性", success: true)
         }
         else if indexPath.row == 13 {
-            CLToastManager.share.reset()
+            CLToastManager.share.cl_reset()
             CLToast.cl_show(msg: "重置toast的属性", success: true)
+        }
+        else if indexPath.row == 14 {
+            CLToastManager.share.supportQuene = false
+            CLToast.cl_show(msg: "测试禁止多任务顺序执行", success: true)
         }
     }
 

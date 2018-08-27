@@ -75,6 +75,10 @@ class CLToastUtils: Operation {
         CLToastManager.share.add(self)
     }
     
+    open override func cancel() {
+        super.cancel()
+        self.dismiss()
+    }
     override func start() {
         let isRunnable = !self.isFinished && !self.isCancelled && !self.isExecuting
         guard isRunnable else { return }
@@ -128,9 +132,6 @@ class CLToastUtils: Operation {
             }
         }
     }
-    override func cancel() {
-        print("cancel")
-    }
 }
 
 extension CLToastUtils: CAAnimationDelegate {
@@ -143,15 +144,23 @@ extension CLToastUtils: CAAnimationDelegate {
                     self.imageToastView.alpha = 0
                 }
             }) { (finish) in
-                self.textToastView.removeFromSuperview()
-                self.imageToastView.removeFromSuperview()
-                self.finish()
+                self.dismiss()
             }
         }
+    }
+    
+    func dismiss() {
+        self.textToastView.removeFromSuperview()
+        self.imageToastView.removeFromSuperview()
+        self.finish()
     }
     
     func finish() {
         self.isExecuting = false
         self.isFinished = true
+        
+        if CLToastManager.share.supportQuene == false {
+            CLToastManager.share.cancelAll()
+        }
     }
 }

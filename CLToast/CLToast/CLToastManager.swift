@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CLToastManager: NSObject {
+public class CLToastManager {
     public static let share = CLToastManager()
     
     public var successImage = UIImage(named: "ic_toast_success", in: BundleUtil.getCurrentBundle(), compatibleWith: nil)
@@ -17,6 +17,7 @@ public class CLToastManager: NSObject {
     public var textColor = UIColor.white
     public var textFont = UIFont.systemFont(ofSize: 16)
     public var cornerRadius: CGFloat = 5
+    public var supportQuene: Bool = true
 
     private let queue: OperationQueue = {
         let queue = OperationQueue()
@@ -24,19 +25,29 @@ public class CLToastManager: NSObject {
         return queue
     }()
     
+    public func cl_reset() {
+        self.common()
+    }
+    
+    @available(*, deprecated, message: "Use 'cl_reset' instead.")
     public func reset() {
+        self.common()
+    }
+    
+    func common() {
         self.bgColor = UIColor.black
         self.textColor = UIColor.white
         self.textFont = UIFont.systemFont(ofSize: 16)
         self.cornerRadius = 5
         self.successImage = UIImage(named: "ic_toast_success", in: BundleUtil.getCurrentBundle(), compatibleWith: nil)
         self.failImage = UIImage(named: "icon_sign", in: BundleUtil.getCurrentBundle(), compatibleWith: nil)
+        self.supportQuene = true
     }
     
     func add(_ toast: CLToastUtils) {
         self.queue.addOperation(toast)
     }
-    open func cancelAll() {
-        queue.cancelAllOperations()
+    public func cancelAll() {
+        self.queue.cancelAllOperations()
     }
 }

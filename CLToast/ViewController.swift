@@ -127,7 +127,7 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
             CLToast.cl_show(msg: "修改toast的属性,修改toast的属性", success: true)
         }
         else if indexPath.row == 13 {
-            CLToastManager.share.cl_reset()
+            CLToastManager.share.cl_resetDefaultProps()
             CLToast.cl_show(msg: "重置toast的属性", success: true)
         }
         else if indexPath.row == 14 {

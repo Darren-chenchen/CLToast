@@ -87,5 +87,5 @@ CLToast.cl_show(msg: "修改toast的属性,修改toast的属性", success: true)
 
 # 使用注意
 
-1.由于CLToastManager 是一个单例对象，当设置响应的属性后，那整个项目的toast就会保持整个属性值。如果项目toast较为统一，那么只要在appdelegate中设置一次即可，如果只是想偶尔改变一次toast的属性值，那么再改变之后，调用reset方法即可重置。
+1.由于CLToastManager 是一个单例对象，当设置响应的属性后，那整个项目的toast就会保持整个属性值。如果项目toast较为统一，那么只要在appdelegate中设置一次即可，如果只是想偶尔改变一次toast的属性值，那么再改变之后，记得重新设置。
 

@@ -25,7 +25,7 @@ public class CLToastManager {
         return queue
     }()
     
-    public func cl_reset() {
+    public func cl_resetDefaultProps() {
         self.common()
     }
     

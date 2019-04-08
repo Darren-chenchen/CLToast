@@ -1,3 +1,6 @@
+# 该库不再维护，请参考更加完善的组件库
+
+# [IDealist](https://github.com/Darren-chenchen/IDealist)
 # CLToast IOS Toast弹框提示组件
 
 ![Pod Version](https://img.shields.io/cocoapods/v/CLToast.svg?style=flat)
